@@ -1,14 +1,21 @@
-import './App.css';
-import { getTasks } from './services/taskService';
+import { Route, Routes } from 'react-router-dom'
+import { HomeLayout } from './components/Layouts/HomeLayout'
+import { ProtectedLayout } from './components/Layouts/ProtectedLayout'
+import HomePage from './pages/Home'
+import LoginPage from './pages/Login'
 
 function App() {
-  getTasks().then((res) => console.log(res.data));
-  
   return (
-    <div className="App">
-      <h1>React app</h1>
-    </div>
-  );
+    <Routes>
+      <Route path='*' element={<HomeLayout />}>
+        <Route path="login" element={<LoginPage />} />
+      </Route>
+
+      <Route path='/' element={<ProtectedLayout />}>
+        <Route path='home' element={<HomePage />} />
+      </Route>
+    </Routes>
+  )
 }
 
-export default App;
+export default App
