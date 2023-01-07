@@ -1,6 +1,8 @@
 const connection = require('./db');
 const cors = require('cors');
 const express = require('express');
+const Auth = require('./routes/Auth');
+const tasks = require('./routes/tasks');
 const verifyToken = require('./routes/validate-token');
 
 const app = express();
@@ -10,8 +12,8 @@ connection()
 app.use(express.json())
 app.use(cors())
 
-app.use('/api/users', require('./routes/Auth'))
-app.use('/api/tasks', verifyToken, require('./routes/tasks'))
+app.use('/api/users', Auth)
+app.use('/api/tasks', verifyToken, tasks)
 
 const port = process.env.PORT || 8000;
 
