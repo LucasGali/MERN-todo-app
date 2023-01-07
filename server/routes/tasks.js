@@ -52,12 +52,6 @@ router.post('/', async (req, res) => {
 // @desc    Update a task
 // @access  Public
 router.put('/:id', async (req, res) => {
-  const { task, completed } = req.body;
-
-  // Build task object
-  const taskFields = {};
-  if (task) taskFields.task = task;
-  if (completed) taskFields.completed = completed;
 
   try {
     let task = await Task.findById(req.params.id);
@@ -66,12 +60,12 @@ router.put('/:id', async (req, res) => {
 
     task = await Task.findByIdAndUpdate(
       req.params.id,
-      { $set: taskFields },
-      { new: true }
+      req.body,
     );
 
-    res.json(task);
+    res.json({ msg: 'Task updated' });
   } catch (error) {
+    console.log("⚡ ~ error", error)
     res.status(500).json({ msg: 'Server error' });
   }
 });

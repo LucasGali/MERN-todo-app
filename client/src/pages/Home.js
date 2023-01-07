@@ -1,14 +1,12 @@
 import React from 'react';
-import '../App.css';
-import { getTasks } from '../services/taskService';
+import Tasks from '../components/Tasks/Tasks';
 
 
 function HomePage() {
-  getTasks().then((res) => console.log(res.data));
 
   return (
-    <div className='App'>
-      <h1>Home Page</h1>
+    <div>
+      <Tasks />
     </div>
   )
 }
