@@ -1,7 +1,7 @@
 const connection = require('./db');
 const cors = require('cors');
 const express = require('express');
-const Auth = require('./routes/Auth');
+const Auth = require('./routes/auth');
 const tasks = require('./routes/tasks');
 const verifyToken = require('./routes/validate-token');
 
